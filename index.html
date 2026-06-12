@@ -43,6 +43,22 @@
     <script>
         const board = document.getElementById("board");
 
+        function moveStones(index) {
+            let pit = board.children[index];
+            let stones = Number(pit.innerText);
+
+            if (stones === 0) return;
+
+            pit.innerText = "0";
+
+            while (stones > 0) {
+                index = (index + 1) % 12;
+                board.children[index].innerText =
+                    Number(board.children[index].innerText) + 1;
+                stones--;
+            }
+        }
+
         function createBoard() {
             board.innerHTML = "";
 
@@ -51,25 +67,13 @@
                 pit.className = "pit";
                 pit.innerText = "4";
 
-                pit.addEventListener("click", () => moveStones(pit));
+                // 🔥 CLICK BURADA GARANTİ
+                pit.onclick = () => {
+                    console.log("tıklandı:", i);
+                    moveStones(i);
+                };
 
                 board.appendChild(pit);
-            }
-        }
-
-        function moveStones(pit) {
-            let stones = Number(pit.innerText);
-            if (stones === 0) return;
-
-            pit.innerText = "0";
-
-            let index = Array.from(board.children).indexOf(pit);
-
-            while (stones > 0) {
-                index = (index + 1) % 12;
-                board.children[index].innerText =
-                    Number(board.children[index].innerText) + 1;
-                stones--;
             }
         }
 
