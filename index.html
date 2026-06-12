@@ -4,10 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mangala Coach</title>
+    <style>
+    body {
+        font-family: Arial;
+        text-align: center;
+    }
+
+    #board {
+        display: grid;
+        grid-template-columns: repeat(6, 60px);
+        gap: 10px;
+        justify-content: center;
+        margin-top: 50px;
+    }
+
+    .pit {
+        width: 60px;
+        height: 60px;
+        border: 2px solid black;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
 </head>
 <body>
 
     <h1>Mangala Coach</h1>
+    <div id="board"></div>
+    <script>
+    const board = document.getElementById("board");
+
+    for (let i = 0; i < 12; i++) {
+        const pit = document.createElement("div");
+        pit.className = "pit";
+        pit.innerText = "4";
+        board.appendChild(pit);
+    }
+</script>
 
 </body>
 </html>
