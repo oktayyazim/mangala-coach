@@ -29,6 +29,7 @@
             justify-content: center;
             font-size: 18px;
             cursor: pointer;
+            user-select: none;
         }
     </style>
 </head>
@@ -42,18 +43,20 @@
     <script>
         const board = document.getElementById("board");
 
-        // Tahtayı oluştur
-        for (let i = 0; i < 12; i++) {
-            const pit = document.createElement("div");
-            pit.className = "pit";
-            pit.innerText = "4";
+        function createBoard() {
+            board.innerHTML = "";
 
-            pit.onclick = () => moveStones(pit);
+            for (let i = 0; i < 12; i++) {
+                const pit = document.createElement("div");
+                pit.className = "pit";
+                pit.innerText = "4";
 
-            board.appendChild(pit);
+                pit.addEventListener("click", () => moveStones(pit));
+
+                board.appendChild(pit);
+            }
         }
 
-        // Taş dağıtma sistemi
         function moveStones(pit) {
             let stones = Number(pit.innerText);
             if (stones === 0) return;
@@ -69,6 +72,8 @@
                 stones--;
             }
         }
+
+        createBoard();
     </script>
 
 </body>
